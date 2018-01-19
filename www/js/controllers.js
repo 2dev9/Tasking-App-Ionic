@@ -14,7 +14,20 @@ angular.module('starter.controllers', [])
   }).then(function(modal){
   		$scope.modal = modal;
   });
+
+    $scope.new = {
+    taskName: "",
+    taskDesc: ""
+  };
+    $scope.newTask = function(){
+        if(Tasks.create($scope.new)){
+          $cordovaToast.show("Task Created", "short", "bottom");
+          $scope.modal.hide();
+        }
+    }
 })
+
+
 
 .controller('TaskDetailCtrl', function($scope, $stateParams, Tasks) {
   $scope.task = Tasks.get($stateParams.taskId);
